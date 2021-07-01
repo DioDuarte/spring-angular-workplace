@@ -1,0 +1,121 @@
+#cadastro-cliente-page {
+    .botoes-footer {
+        display: flex;
+        button {
+            margin-bottom: 30px;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+    }
+    .col-md-11 {
+        margin-top: 12.5px !important;
+        padding: 0;
+    }
+
+    .telefone-card-container {
+        display: flex;
+        max-width: 1550px;
+        margin: 8px;
+    }
+    margin: 12px;
+
+    .checkbox-container {
+        display: flex;
+    }
+
+    form {
+        button {
+            margin-left: 4px;
+        }
+    }
+
+    .input-pequeno {
+        width: 100px;
+        text-align: center;
+    }
+
+    .input-medio {
+        width: 180px;
+        text-align: center;
+    }
+    .input-grande {
+        width: 250px;
+        text-align: center;
+    }
+    .input-maior {
+        width: 350px;
+        text-align: center;
+    }
+
+    .endereco-table {
+        margin: 12px;
+    }
+    .telefone-table {
+        margin: 12px;
+        span {
+            padding: 4px 25px;
+        }
+    }
+
+    .cadastrar-cliente {
+        margin-left: 12px;
+    }
+    button {
+        padding: 5px;
+    }
+    .dados-principais-container {
+        margin-top: 20px !important;
+        margin: 8px 8px;
+
+        form {
+            padding: 4px;
+
+            input {
+                padding: 5px;
+                margin: 2px;
+            }
+        }
+        .dados-principais-title {
+            font-weight: 500;
+            margin-left: 8px;
+        }
+    }
+
+    .telefone-container {
+        margin-top: 20px !important;
+        margin: 8px 8px;
+
+        form {
+            padding: 4px;
+
+            input {
+                padding: 5px;
+                margin: 2px;
+            }
+        }
+
+        .telefone-title {
+            font-weight: 500;
+            margin-left: 8px;
+        }
+    }
+
+    .endereco-container {
+        margin-top: 20px !important;
+        margin: 8px 8px;
+
+        form {
+            padding: 4px;
+
+            input {
+                padding: 5px;
+                margin: 2px;
+            }
+        }
+    }
+
+    .endereco-title {
+        font-weight: 500;
+        margin-left: 8px;
+    }
+}

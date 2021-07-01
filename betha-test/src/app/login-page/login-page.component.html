@@ -1,0 +1,15 @@
+<div id="login-page">
+    <div class="form-login">
+        <img src="http://www.betha.com.br/site/images/betha-2.png" alt="Betha Sistemas">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
+            <input placeholder="Insira seu e-mail" type="email" formControlName="email">
+            <input placeholder="Insira sua senha" type="password" formControlName="password">
+            <div class="login-form-buttons">
+                <button class="login-button" type="submit">Acessar</button>
+                <button class="signup-button" (click)="goSignUp()">Registre-se</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>

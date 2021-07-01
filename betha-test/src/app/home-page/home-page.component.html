@@ -1,0 +1,42 @@
+<div id="home-page">
+    <div class="home-header">
+        <img src="http://www.betha.com.br/site/images/betha-2.png" alt="Betha Sistemas">
+        <button class='home-logout-btn'>Desconectar</button>
+    </div>
+    <div class="menu-trilha">
+        <div class="trilha" *ngFor="let trilha of menuTrilha">
+            <div class="line" [ngStyle]="{'backgroundColor': trilha.color}"></div>
+            <span [ngStyle]="{'color': trilha.color}">{{trilha.trilha}}</span>
+        </div>
+    </div>
+    <div class="home-content">
+        <div class="inner-content">
+            <div class="button-row">
+                <button (click)="goCadastroCliente()">Cadastrar Novo Cliente</button>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Nome/Razão Social</th>
+                        <th>Email</th>
+                        <th>CPF/CNPJ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>João Feliciano da Silva 0851478598/0001-00</td>
+                        <td>Feliciano Laticinios LTDA</td>
+                        <td>0851478598/0001-00</td>
+                    </tr>
+                    <tr>
+                        <td>João Feliciano da Silva 0851478598/0001-00</td>
+                        <td>Feliciano Laticinios LTDA</td>
+                        <td>0851478598/0001-00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>

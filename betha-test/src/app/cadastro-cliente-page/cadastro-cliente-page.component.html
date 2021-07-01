@@ -1,0 +1,226 @@
+<div id="cadastro-cliente-page">
+    <div class="dados-principais-container card">
+        <div class="card-body">
+            <h5 style="padding: 6px;" class="card-title">Cadastrar Dados Principais</h5>
+            <form [formGroup]="cadastroClienteForm" class="row g-3">
+                <div class="col-md-4">
+                    <label for="inputAddress" class="form-label">Razão Social</label>
+                    <input type="text" class="form-control" id="inputAddress" formControlName="nome"
+                        placeholder="Razão Social Exemplo LTDA">
+                    <div *ngIf="validatorControlCliente.nome.touched && validatorControlCliente.nome.errors">
+                        <div *ngIf="validatorControlCliente.nome.errors.required">Este é um campo obrigatório.</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="inputAddress" class="form-label">CNPJ</label>
+                    <input type="text" class="form-control" id="inputAddress" formControlName="cpfcnpj"
+                        placeholder="00.000.000/0001-00" (keyup)="cnpjHttpError=''" mask="00.000.000/0000-00">
+                    <div
+                        *ngIf="validatorControlCliente.cpfcnpj.touched && (validatorControlCliente.cpfcnpj.errors || cnpjHttpError)">
+                        <div *ngIf="cnpjHttpError">{{cnpjHttpError}}</div>
+                        <div *ngIf="validatorControlCliente.cpfcnpj.errors?.required">Este é um campo obrigatório.</div>
+                        <div *ngIf="validatorControlCliente.cpfcnpj.errors?.pattern">O CNPJ informado não é válido</div>
+                        <div *ngIf="validatorControlCliente.cpfcnpj.errors?.minlenght">o CNPJ informado possui menos de
+                            14
+                            digitos</div>
+                        <div *ngIf="validatorControlCliente.cpfcnpj.errors?.maxlenght">o CNPJ informado possui mais de
+                            14
+                            digitos</div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <label for="inputAddress" class="form-label">E-mail</label>
+                    <input type="text" class="form-control" id="inputAddress" formControlName="email"
+                        placeholder="emailexemplo@provedorexemplo.com.br">
+                    <div *ngIf="validatorControlCliente.email.touched && validatorControlCliente.email.errors">
+                        <div *ngIf="validatorControlCliente.email.errors.required">Este é um campo obrigatório.</div>
+                        <div *ngIf="validatorControlCliente.email.errors.pattern">O E-mail informado não é válido</div>
+                        <div *ngIf="validatorControlCliente.email.errors.minlenght">E seu e-mail precisa ter no mínimo 5
+                            caracteres</div>
+                    </div>
+                </div>
+            </form>
+            <button style="margin: 6px; padding: 5px 12px;" class="btn btn-primary" *ngIf="!clienteInfo"
+                (click)="onSubmit()" [disabled]="!cadastroClienteForm.valid">Cadastrar
+                Cliente</button>
+        </div>
+    </div>
+
+    <div class="telefone-card-container">
+        <div class="telefone-container card" style="min-width: 387px">
+            <div class="card-body">
+                <h5 style="padding-left: 6px" class="card-title">Cadastrar Telefones</h5>
+                <form [formGroup]="cadastroTelefoneForm" class="row g-3">
+                    <div class="col-md-12">
+                        <label for="inputAddress" class="form-label">Telefone</label>
+                        <input type="text" class="form-control" id="inputAddress" formControlName="telefone"
+                            placeholder="(00) 00000-0000" mask="(00) 00000-0000">
+                        <div
+                            *ngIf="validatorControlTelefone.telefone.touched && (validatorControlTelefone.telefone.errors || telefoneHttpError)">
+                            <div *ngIf="telefoneHttpError">{{telefoneHttpError}}</div>
+                            <div *nfIf="validatorControlTelefone.telefone.errors?.minlenght">O telefone precisa possuir
+                                no minimo 8 digitos</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" style="padding: 5px 12px; height: 38px; margin-bottom: 6px;"
+                        [disabled]="!clienteInfo || !cadastroTelefoneForm.valid" (click)="newPhone()">Adicionar
+                        Telefone</button>
+                </form>
+            </div>
+        </div>
+        <div style="max-height: 206px; margin-top: 20px; max-width: 1146px; width: 100%;" class="telefone-card card">
+            <div class="card-body">
+                <h5 class="card-title">Telefones Cadastrados</h5>
+                <span mask="(00) 00000-0000" style="margin-right: 25px"
+                    *ngFor="let item of telefoneLista">{{item.telefone| mask: '(00) 00000-0000'}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="endereco-container card">
+        <div class="card-body">
+            <h5 style="padding-left: 6px" class="card-title">Cadastrar Endereços</h5>
+            <form [formGroup]="cadastroEnderecoForm" class="row g-3">
+                <div class="col-md-6">
+                    <label for="inputAddress" class="form-label">Logradouro</label>
+                    <input type="text" class="form-control" id="inputAddress" formControlName="rua"
+                        placeholder="Rua Exemplo">
+                    <div
+                        *ngIf="validatorControlEndereco.rua.touched && (validatorControlEndereco.rua.errors || telefoneHttpError)">
+                        <div *ngIf="enderecoHttpError">{{enderecoHttpError}}</div>
+                        <div *ngIf="validatorControlEndereco.rua.errors?.required">Este é um campo obrigatório.</div>
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label for="inputZip" class="form-label">Número</label>
+                    <input type="text" class="form-control" id="inputZip" formControlName="numero" placeholder="20">
+                    <div *ngIf="validatorControlEndereco.numero.touched && validatorControlEndereco.numero.errors">
+                        <div *ngIf="validatorControlEndereco.numero.errors.required">Este é um campo obrigatório.</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="inputEmail4" class="form-label">Ponto de Referência</label>
+                    <input type="text" class="form-control" id="inputEmail4" formControlName="referencia"
+                        placeholder="Próximo a...">
+                    <div
+                        *ngIf="validatorControlEndereco.referencia.touched && validatorControlEndereco.referencia.errors">
+                        <div *ngIf="validatorControlEndereco.referencia.errors.required">Este é um campo obrigatório.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="inputPassword4" class="form-label">Bairro</label>
+                    <input type="text" class="form-control" id="inputPassword4" formControlName="bairro"
+                        placeholder="Bairro Exemplo">
+                    <div *ngIf="validatorControlEndereco.bairro.touched && validatorControlEndereco.bairro.errors">
+                        <div *ngIf="validatorControlEndereco.bairro.errors.required">Este é um campo obrigatório.</div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="inputAddress2" class="form-label">Cidade</label>
+                    <input type="text" class="form-control" id="inputAddress2" formControlName="cidade"
+                        placeholder="Cidade Exemplo">
+                    <div *ngIf="validatorControlEndereco.cidade.touched && validatorControlEndereco.cidade.errors">
+                        <div *ngIf="validatorControlEndereco.cidade.errors.required">Este é um campo obrigatório.</div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label for="inputCity" class="form-label">CEP</label>
+                    <input type="text" class="form-control" id="inputCity" formControlName="cep" placeholder="00000-000"
+                        mask="00000-000">
+                    <div *ngIf="validatorControlEndereco.cep.touched && validatorControlEndereco.cep.errors">
+                        <div *ngIf="validatorControlEndereco.cep.errors.required">Este é um campo obrigatório.</div>
+                        <div *ngIf="validatorControlEndereco.cep.errors.pattern">O CEP informado não é válido.</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Estado</label>
+                    <select id="inputState" class="form-select" formControlName="estado">
+                        <option selected>Escolha uma opção...</option>
+                        <option>Acre (AC)</option>
+                        <option>Alagoas (AL)</option>
+                        <option>Amazonas (AM)</option>
+                        <option>Bahia (BA)</option>
+                        <option>Ceará (CE)</option>
+                        <option>Distrito Federal (DF)</option>
+                        <option>Espírito Santo (ES)</option>
+                        <option>Goiás (GO)</option>
+                        <option>Maranhão (MA)</option>
+                        <option>Mato Grosso (MT)</option>
+                        <option>Mato Grosso do Sul (MS)</option>
+                        <option>Minas Gerais (MG)</option>
+                        <option>Pará (PA)</option>
+                        <option>Paraíba (PB)</option>
+                        <option>Paraná (PR)</option>
+                        <option>Pernambuco (PE)</option>
+                        <option>Piauí (PI)</option>
+                        <option>Rio de Janeiro (RJ)</option>
+                        <option>Rio Grande do Norte (RN)</option>
+                        <option>Rio Grande do Sul (RS)</option>
+                        <option>Rondônia (RO)</option>
+                        <option>Roraima (RR)</option>
+                        <option>Santa Catarina (SC)</option>
+                        <option>São Paulo (SP)</option>
+                        <option>Sergipe (SE)</option>
+                        <option>Tocantins (TO)</option>
+                    </select>
+                    <div *ngIf="validatorControlEndereco.estado.touched && validatorControlEndereco.estado.errors">
+                        <div *ngIf="validatorControlEndereco.estado.errors.required">Este é um campo obrigatório.</div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-1">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck" formControlName="principal">
+
+                    </div>
+                </div>
+                <div class="col-md-11 coluna-md-11-margens">
+                    <label class="form-check-label" for="gridCheck">
+                        Definir como endereço principal
+                    </label>
+                </div>
+                <button style="max-width: 200px;" class="btn btn-primary"
+                    [disabled]="!clienteInfo || !cadastroEnderecoForm.valid" (click)="newAdress()">Adicionar
+                    Endereço</button>
+            </form>
+        </div>
+    </div>
+    <div class="endereco-table">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Rua</th>
+                    <th>Número</th>
+                    <th>Ponto de Referência</th>
+                    <th>Bairro</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th>CEP</th>
+                    <th>Principal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of enderecoLista; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{item.rua}}</td>
+                    <td>{{item.numero}}</td>
+                    <td>{{item.referencia}}</td>
+                    <td>{{item.bairro}}</td>
+                    <td>{{item.cidade}}</td>
+                    <td>{{item.estado}}</td>
+                    <td>{{item.cep | mask:'00000-000'}}</td>
+                    <td>{{item.principal? '☑️':'❌'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="botoes-footer">
+        <button (click)="goHome()" class="btn btn-primary">Finalizar Cadastro</button>
+        <button (click)="resetClienteForm()" class="btn btn-primary">Cadastrar Novo Cliente</button>
+    </div>
+</div>

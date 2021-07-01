@@ -1,0 +1,95 @@
+#home-page {
+    height: 100%;
+    .home-header {
+        height: 100px;
+        background-color: rgba($color: #3b3b3b, $alpha: 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 30px;
+        img {
+            padding-left: 20px;
+            height: 48px;
+            display: flex;
+        }
+        .home-logout-btn {
+            color: white;
+            font-weight: bold;
+            display: flex;
+            min-height: 60px;
+            align-items: center;
+            background-color: #233b75;
+            border-radius: 8px;
+            outline: none;
+            border-color: rgba($color: #ffffff, $alpha: 0.4);
+        }
+        button:hover {
+            background-color: #557bd4;
+        }
+    }
+    .menu-trilha {
+        width: 100%;
+        display: flex;
+
+        .trilha {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            gap: 6px;
+            font-size: 10px;
+            font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana,
+                sans-serif;
+
+            span {
+                padding: 0 8px;
+            }
+        }
+
+        .line {
+            width: 100%;
+            background-color: #3b3b3b;
+            content: "";
+            height: 4px;
+        }
+    }
+    .home-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+
+        .inner-content {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        .button-row {
+            width: calc(100% - 4px);
+            max-width: 800px;
+            padding: 0 2px;
+            display: flex;
+            justify-content: flex-end;
+
+            button {
+                margin-bottom: 8px;
+                height: 30px;
+            }
+        }
+    }
+}

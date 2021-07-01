@@ -1,0 +1,56 @@
+<div id="signup-page">
+    <div class="form-login">
+        <img src="http://www.betha.com.br/site/images/betha-2.png" alt="Betha Sistemas">
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit($event)">
+            <input placeholder="Insira seu e-mail" type="email" formControlName="email" (keyup)="httpError=''">
+
+            <div class="validator-errors"
+                *ngIf="validatorControl.email.touched && (validatorControl.email.errors || httpError)">
+                <div *ngIf="httpError">{{httpError}}</div>
+                <div *ngIf="validatorControl.email.errors?.required">Este é um campo obrigatório.</div>
+                <div *ngIf="validatorControl.email.errors?.minlength">Seu e-mail precisa conter no mínimo 5 caracteres.
+                </div>
+                <div *ngIf="validatorControl.email.errors?.pattern">Este não é um e-mail válido.</div>
+            </div>
+
+
+            <input placeholder="Insira seu nome" type="text" formControlName="nome">
+            <div class="validator-errors" *ngIf="validatorControl.nome.touched && validatorControl.nome.errors">
+                <div *ngIf="validatorControl.nome.errors.required">Este é um campo obrigatório.
+                </div>
+            </div>
+
+
+            <input placeholder="Insira seu sobrenome" type="email" formControlName="sobrenome">
+            <div class="validator-errors"
+                *ngIf="validatorControl.sobrenome.touched && validatorControl.sobrenome.errors">
+                <div *ngIf="validatorControl.sobrenome.errors.required">Este é um campo obrigatório.</div>
+            </div>
+
+
+            <input placeholder="Insira sua senha" type="password" formControlName="password">
+            <div class="validator-errors" *ngIf="validatorControl.password.touched && validatorControl.password.errors">
+                <div *ngIf="validatorControl.password.errors.required">Este é um campo obrigatório.</div>
+                <div *ngIf="validatorControl.password.errors.minlength">Seu e-mail precisa conter no mínimo 6
+                    caracteres.
+                </div>
+            </div>
+
+            <input placeholder="Confirme a sua senha" type="password" formControlName="passwordconfirmation">
+            <div class="validator-errors"
+                *ngIf="validatorControl.passwordconfirmation.dirty && validatorControl.passwordconfirmation.errors">
+                <div *ngIf="validatorControl.passwordconfirmation.errors.required">Este é um campo obrigatório.</div>
+                <div *ngIf="validatorControl.passwordconfirmation.errors.mustMatch">Suas senhas não coincidem.</div>
+
+
+            </div>
+            <div class="login-form-buttons">
+                <button id="register-button" [disabled]="!signUpForm.valid" class="signup-button"
+                    routerLink="/registre-se">Registre-se</button>
+            </div>
+            <a href="#" routerLink="/login">Já possuo uma conta</a>
+        </form>
+
+    </div>
+
+</div>
