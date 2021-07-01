@@ -1,7 +1,7 @@
 <div id="home-page">
     <div class="home-header">
         <img src="http://www.betha.com.br/site/images/betha-2.png" alt="Betha Sistemas">
-        <button class='home-logout-btn'>Desconectar</button>
+        <button (click)="logout()" class='home-logout-btn'>Desconectar</button>
     </div>
     <div class="menu-trilha">
         <div class="trilha" *ngFor="let trilha of menuTrilha">
@@ -17,21 +17,21 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Nome/Razão Social</th>
-                        <th>Email</th>
-                        <th>CPF/CNPJ</th>
+                        <th class="alinha-tabela">Nome/Razão Social</th>
+                        <th class="alinha-tabela">Email</th>
+                        <th class="alinha-tabela">CPF/CNPJ</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>João Feliciano da Silva 0851478598/0001-00</td>
-                        <td>Feliciano Laticinios LTDA</td>
-                        <td>0851478598/0001-00</td>
+                    <tr *ngFor="let item of listaClientes">
+                        <td>{{item.nome}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.cpfcnpj}}</td>
                     </tr>
                     <tr>
-                        <td>João Feliciano da Silva 0851478598/0001-00</td>
-                        <td>Feliciano Laticinios LTDA</td>
-                        <td>0851478598/0001-00</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>

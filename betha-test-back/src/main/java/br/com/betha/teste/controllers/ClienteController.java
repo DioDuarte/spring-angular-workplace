@@ -53,4 +53,10 @@ public class ClienteController {
         }
 
         }
+        @GetMapping("/meus-clientes")
+    public ResponseEntity getMeusClientes(@RequestHeader ("userId") String meusClientes){
+        return new ResponseEntity(this.clienteRepository.findAllByCreatedby(meusClientes), new HttpHeaders(), HttpStatus.OK);
+
+        }
+
     }

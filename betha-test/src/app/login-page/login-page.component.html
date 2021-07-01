@@ -2,8 +2,16 @@
     <div class="form-login">
         <img src="http://www.betha.com.br/site/images/betha-2.png" alt="Betha Sistemas">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
-            <input placeholder="Insira seu e-mail" type="email" formControlName="email">
-            <input placeholder="Insira sua senha" type="password" formControlName="password">
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">E-mail</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="email@exemplo.com.br"
+                    formControlName="email">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="formGroupExampleInput" placeholder="Digite sua senha."
+                    formControlName="password">
+            </div>
             <div class="login-form-buttons">
                 <button class="login-button" type="submit">Acessar</button>
                 <button class="signup-button" (click)="goSignUp()">Registre-se</button>

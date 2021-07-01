@@ -29,6 +29,8 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.verifyAuthToken()
+
   }
 
 
@@ -50,4 +52,10 @@ export class LoginPageComponent implements OnInit {
     this.router.navigate([PagePath.SIGNUP])
   }
 
+  public verifyAuthToken() {
+    if (window.localStorage.getItem("token")) {
+      this.toastr.success("Seja bem vindo ao ambiente.", "Login Realizado")
+      this.router.navigate([PagePath.HOME])
+    }
+  }
 }

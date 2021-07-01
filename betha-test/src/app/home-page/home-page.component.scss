@@ -1,4 +1,8 @@
 #home-page {
+    .alinha-tabela {
+        text-align: left;
+    }
+
     height: 100%;
     .home-header {
         height: 100px;
@@ -65,10 +69,6 @@
             max-width: 800px;
             display: flex;
             flex-direction: column;
-        }
-
-        th {
-            text-align: center;
         }
 
         table {

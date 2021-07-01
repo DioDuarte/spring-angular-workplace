@@ -11,6 +11,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
+  public listaClientes: any = [];
+
   menuTrilha = [
     {
       trilha: "Gestão Municipal",
@@ -61,6 +63,8 @@ export class HomePageComponent implements OnInit {
     this.verifyAuthToken()
 
     this.getUserData()
+
+    this.getClientData()
   }
 
   public verifyAuthToken() {
@@ -68,6 +72,14 @@ export class HomePageComponent implements OnInit {
       this.toastr.error("Faça Login para continuar", "Acesso Negado")
       this.router.navigate([PagePath.LOGIN])
     }
+  }
+
+  public getClientData() {
+    let params = { headers: { userId: window.localStorage.getItem("userId") + "" } };
+    this.httpRequest.get("http://localhost:8080/clientes/meus-clientes", params).subscribe((response: any) => {
+      console.log(response);
+      this.listaClientes = response;
+    })
   }
 
   public getUserData() {
@@ -88,6 +100,12 @@ export class HomePageComponent implements OnInit {
   }
   public goCadastroCliente() {
     this.router.navigate([PagePath.CADASTRO_CLIENTE])
+  }
+
+  logout() {
+    window.localStorage.removeItem("token");
+    this.toastr.show("Você foi deslogado com sucesso", "Deslogado")
+    this.router.navigate([PagePath.LOGIN])
   }
 
 }
